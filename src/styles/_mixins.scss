@@ -1,0 +1,4 @@
+@mixin heading($size) {
+  font-size: $size;
+  font-weight: 700;
+}

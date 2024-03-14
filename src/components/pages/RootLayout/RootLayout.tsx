@@ -4,19 +4,15 @@ import { Spinner } from "../../atoms/Spinner/Spinner";
 
 export const RootLayout = () => {
   return (
-    <>
-      <main>
-        <Suspense
-          fallback={
-            <Spinner
-              containerClassName="flex justify-center items-center w-screen h-screen"
-              size={100}
-            />
-          }
-        >
-          <Outlet />
-        </Suspense>
-      </main>
-    </>
+    <Suspense
+      fallback={
+        <Spinner
+          containerClassName="flex justify-center items-center w-screen h-screen"
+          size={100}
+        />
+      }
+    >
+      <Outlet />
+    </Suspense>
   );
 };

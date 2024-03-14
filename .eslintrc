@@ -1,0 +1,104 @@
+{
+  "root": true,
+  "env": { "browser": true, "es2020": true },
+  "plugins": ["@typescript-eslint", "import", "react-refresh"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "tsconfig.json"
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:import/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "eslint-config-prettier"
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      "node": {
+        "paths": [
+          "src"
+        ],
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx"
+        ]
+      }
+    }
+  },
+  "rules": {
+    // sort imports
+    "import/order": "error",
+
+    // no let exports
+    "import/no-mutable-exports": "error",
+
+    "import/no-cycle": "error",
+    "import/no-default-export": "error",
+
+    // allow {} even though it's unsafe but comes handy
+    "@typescript-eslint/ban-types": [
+      "error",
+      {
+      "type": {
+          "{}": false
+        }
+      }
+    ],
+
+    "@typescript-eslint/consistent-type-imports": [
+      "error",
+      {
+        "prefer": "type-imports",
+        "fixStyle": "inline-type-imports",
+        "disallowTypeAnnotations": false
+      }
+    ],
+
+    "import/no-duplicates": ["error", { "prefer-inline": true }],
+
+    // false negatives
+    "import/namespace": ["off"],
+
+    // we allow empty interfaces
+    "no-empty-pattern": "off",
+    "@typescript-eslint/no-empty-interface": "off",
+
+    // we allow empty functions
+    "@typescript-eslint/no-empty-function": "off",
+
+    // we sometimes use async functions that don't await anything
+    "@typescript-eslint/require-await": "off",
+
+    // make sure to `await` inside try…catch
+    "@typescript-eslint/return-await": ["error", "in-try-catch"],
+
+    // allow unused vars prefixed with `_`
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }
+    ],
+
+    // numbers and booleans are fine in template strings
+    "@typescript-eslint/restrict-template-expressions": [
+      "error",
+      { "allowNumber": true, "allowBoolean": true }
+    ],
+
+    "react-refresh/only-export-components": [
+      "warn",
+      { "allowConstantExport": true }
+    ],
+
+    "react/react-in-jsx-scope": "off"
+  },
+  "ignorePatterns": ["dist", ".eslintrc.cjs", "*.js", "*.jsx"],
+  "workingDirectories": ["<rootDir>/src"]
+}

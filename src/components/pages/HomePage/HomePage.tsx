@@ -13,6 +13,11 @@ type InitialSearchParams = {
 	per_page: number;
 };
 
+export type FetchedProducts = {
+	data: Product[];
+	errorStatus?: number;
+};
+
 const INITIAL_SEARCH_PARAMS: InitialSearchParams = {
 	page: 1,
 	per_page: 5,
@@ -26,10 +31,14 @@ export const HomePage = () => {
 		Number(searchParams.get("per_page")) || INITIAL_SEARCH_PARAMS.per_page;
 	const searchedId = Number(searchParams.get("productId")) || undefined;
 
-	const [products, setProducts] = useState<Product[]>([]);
+	const [products, setProducts] = useState<FetchedProducts>({
+		data: [],
+		errorStatus: undefined,
+	});
 
 	const {
 		data: productsData,
+		error,
 		isError,
 		isFetching,
 	} = useGetProductsQuery({
@@ -39,34 +48,48 @@ export const HomePage = () => {
 	});
 
 	useEffect(() => {
-		if (isError || isFetching) {
-			setProducts([]);
+		if (isFetching) {
+			setProducts({ data: [], errorStatus: undefined });
+			return;
+		}
+
+		if (isError) {
+			if ("status" in error && typeof error.status === "number") {
+				setProducts({
+					data: [],
+					errorStatus: error?.status,
+				});
+			} else {
+				setProducts({ data: [], errorStatus: 500 });
+			}
 			return;
 		}
 
 		if (Array.isArray(productsData?.data)) {
-			setProducts(productsData?.data);
+			setProducts({ data: productsData?.data, errorStatus: 200 });
 		} else if (productsData?.data?.id) {
-			setProducts([productsData?.data]);
+			setProducts({ data: [productsData?.data], errorStatus: 200 });
 		}
-	}, [productsData?.data, isError]);
+	}, [productsData?.data, isError, isFetching]);
 
 	const handlePageChange = (page: number) => {
 		searchParams.set("page", page.toString());
 		setSearchParams(searchParams);
 	};
 
+	console.log(products);
+
 	return (
 		<>
 			<Header className="mb-5" />
 			<main className="px-5">
-				<ProductsTable className="mb-5" data={products} />
-				{products.length > 0 && (
+				<ProductsTable className="mb-5" products={products} />
+				{products.data.length > 0 && (
 					<Pagination
 						totalPages={productsData?.total_pages || 0}
 						currentPage={currPage}
 						onPageChange={handlePageChange}
-						maxVisiblePages={0}
+						maxVisibleNumberPages={0}
 					/>
 				)}
 			</main>

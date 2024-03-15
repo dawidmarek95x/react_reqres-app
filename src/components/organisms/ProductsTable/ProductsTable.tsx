@@ -1,14 +1,14 @@
 import { TableHTMLAttributes } from "react";
-import { Product } from "../../../redux/services/productsService";
 import { ProductsTableHead } from "../../molecules/ProductsTableHead/ProductsTableHead";
 import clsx from "clsx";
 import { ProductsTableBody } from "../../molecules/ProductTableBody/ProductTableBody";
+import { FetchedProducts } from "../../pages/HomePage/HomePage";
 
 type ProductsTableProps = TableHTMLAttributes<HTMLTableElement> & {
-	data?: Product[];
+	products: FetchedProducts;
 };
 
-export const ProductsTable = ({ data, ...props }: ProductsTableProps) => {
+export const ProductsTable = ({ products, ...props }: ProductsTableProps) => {
 	const headers = ["ID", "Name", "Year"];
 
 	return (
@@ -20,7 +20,7 @@ export const ProductsTable = ({ data, ...props }: ProductsTableProps) => {
 			)}
 		>
 			<ProductsTableHead headers={headers} />
-			<ProductsTableBody products={data} />
+			<ProductsTableBody products={products} />
 		</table>
 	);
 };

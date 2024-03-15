@@ -1,5 +1,5 @@
 import { HTMLAttributes } from "react";
-import { ProductIdFilter } from "../../molecules/SearchInput/ProductIdFilter";
+import { ProductIdFilter } from "../../molecules/ProductIdFilter/ProductIdFilter";
 import clsx from "clsx";
 
 type HeaderProps = HTMLAttributes<HTMLDivElement>;

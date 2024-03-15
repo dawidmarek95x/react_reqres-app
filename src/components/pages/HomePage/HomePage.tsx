@@ -58,7 +58,7 @@ export const HomePage = () => {
 
 	return (
 		<>
-			<Header className="mb-5 shadow-md shadow-gray-400" />
+			<Header className="mb-5" />
 			<main className="px-5">
 				<ProductsTable className="mb-5" data={products} />
 				{products.length > 0 && (

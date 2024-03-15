@@ -1,3 +1,4 @@
+import { X as CloseIcon } from "lucide-react";
 import { FC, ReactNode, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
@@ -25,8 +26,10 @@ export const Modal: FC<ModalProps> = ({ onClose, children }) => {
 		};
 	}, []);
 
-	const handleClose = () => {
-		setIsClosing(true);
+	const handleClose = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+		if (e.target === modalRef.current) {
+			setIsClosing(true);
+		}
 	};
 
 	const handleTransitionEnd = () => {
@@ -44,7 +47,15 @@ export const Modal: FC<ModalProps> = ({ onClose, children }) => {
 			onClick={handleClose}
 			onTransitionEnd={handleTransitionEnd}
 		>
-			<div className="w-full max-w-3xl rounded-md bg-white p-8">{children}</div>
+			<div className="relative w-full max-w-3xl rounded-md bg-white p-9">
+				<button
+					className="absolute right-[6px] top-[6px] ms-auto block rounded-lg bg-gray-300 p-1 hover:bg-red-500"
+					onClick={() => setIsClosing(true)}
+				>
+					<CloseIcon />
+				</button>
+				{children}
+			</div>
 		</div>,
 		modalRoot,
 	);

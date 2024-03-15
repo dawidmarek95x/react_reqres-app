@@ -31,6 +31,18 @@ export const HomePage = () => {
 		Number(searchParams.get("per_page")) || INITIAL_SEARCH_PARAMS.per_page;
 	const searchedId = Number(searchParams.get("productId")) || undefined;
 
+	useEffect(() => {
+		if (searchParams.get("page")) {
+			searchParams.set("page", currPage.toString());
+		}
+
+		if (searchParams.get("per_page")) {
+			searchParams.set("per_page", perPage.toString());
+		}
+
+		setSearchParams(searchParams);
+	}, [searchParams]);
+
 	const [products, setProducts] = useState<FetchedProducts>({
 		data: [],
 		errorStatus: undefined,

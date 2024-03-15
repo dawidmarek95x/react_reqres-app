@@ -1,57 +1,57 @@
 @import "./styles/mixins";
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  color-scheme: light dark;
-  color: #000;
-  background-color: #fff;
+	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+	color-scheme: light dark;
+	color: #000;
+	background-color: #fff;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 *,
 ::after,
 ::before {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+	color: inherit;
+	text-decoration: none;
 }
 
 @tailwind base;
 
 h1 {
-  @include heading(38px);
+	@include heading(38px);
 }
 
 h2 {
-  @include heading(32px);
+	@include heading(32px);
 }
 
 h3 {
-  @include heading(24px);
+	@include heading(24px);
 }
 
 h4 {
-  @include heading(20px);
+	@include heading(20px);
 }
 
 h5 {
-  @include heading(18px);
+	@include heading(18px);
 }
 
 h6 {
-  @include heading(16px);
+	@include heading(16px);
 }
 
 @tailwind components;

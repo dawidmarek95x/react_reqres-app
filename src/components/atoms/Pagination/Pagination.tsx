@@ -1,3 +1,5 @@
+import { MoveLeft as LeftArrowIcon } from "lucide-react";
+import { MoveRight as RightArrowIcon } from "lucide-react";
 import React from "react";
 
 interface PaginationProps {
@@ -39,10 +41,10 @@ export const Pagination: React.FC<PaginationProps> = ({
 			paginationItems.push(
 				<li
 					key="previous"
-					className="cursor-pointer rounded-md border bg-white px-3 py-1 text-black transition-all duration-200 hover:bg-black hover:text-white"
+					className="cursor-pointer rounded-md border bg-white px-3 py-1 text-black transition-all duration-200 hover:bg-cyan-300"
 					onClick={() => handlePageChange(currentPage - 1)}
 				>
-					Prev
+					<LeftArrowIcon size={24} className="stroke-black" />
 				</li>,
 			);
 		}
@@ -53,9 +55,9 @@ export const Pagination: React.FC<PaginationProps> = ({
 					key={i}
 					className={`${
 						i === currentPage
-							? "bg-black text-white"
-							: "bg-white text-black transition-all duration-200 hover:bg-black hover:text-white"
-					} cursor-pointer rounded-md border px-3 py-1`}
+							? "bg-cyan-300"
+							: "bg-white  transition-all duration-200 hover:bg-cyan-300"
+					} cursor-pointer rounded-md border px-3 py-1 text-black`}
 					onClick={() => handlePageChange(i)}
 				>
 					{i}
@@ -67,10 +69,10 @@ export const Pagination: React.FC<PaginationProps> = ({
 			paginationItems.push(
 				<li
 					key="next"
-					className="cursor-pointer rounded-md border bg-white px-3 py-1 text-black transition-all duration-200 hover:bg-black hover:text-white"
+					className="cursor-pointer rounded-md border bg-white px-3 py-1 text-black transition-all duration-200 hover:bg-cyan-300"
 					onClick={() => handlePageChange(currentPage + 1)}
 				>
-					Next
+					<RightArrowIcon size={24} className="stroke-black" />
 				</li>,
 			);
 		}

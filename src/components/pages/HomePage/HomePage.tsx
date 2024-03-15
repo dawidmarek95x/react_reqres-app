@@ -6,6 +6,7 @@ import {
 import { ProductsTable } from "../../organisms/ProductsTable/ProductsTable";
 import { Pagination } from "../../atoms/Pagination/Pagination";
 import { useEffect, useState } from "react";
+import { Header } from "../../templates/Header/Header";
 
 type InitialSearchParams = {
 	page: number;
@@ -27,24 +28,28 @@ export const HomePage = () => {
 
 	const [products, setProducts] = useState<Product[]>([]);
 
-	const { data: productsData, error } = useGetProductsQuery({
+	const {
+		data: productsData,
+		isError,
+		isFetching,
+	} = useGetProductsQuery({
 		page: currPage,
 		per_page: perPage,
 		id: searchedId,
 	});
 
 	useEffect(() => {
+		if (isError || isFetching) {
+			setProducts([]);
+			return;
+		}
+
 		if (Array.isArray(productsData?.data)) {
 			setProducts(productsData?.data);
 		} else if (productsData?.data?.id) {
 			setProducts([productsData?.data]);
 		}
-	}, [productsData?.data]);
-
-	console.log(products);
-
-	console.log(error);
-	console.log(productsData);
+	}, [productsData?.data, isError]);
 
 	const handlePageChange = (page: number) => {
 		searchParams.set("page", page.toString());
@@ -52,16 +57,19 @@ export const HomePage = () => {
 	};
 
 	return (
-		<main className="px-5">
-			<ProductsTable data={products} />
-			{products.length > 0 && (
-				<Pagination
-					totalPages={productsData?.total_pages || 0}
-					currentPage={currPage}
-					onPageChange={handlePageChange}
-					maxVisiblePages={2}
-				/>
-			)}
-		</main>
+		<>
+			<Header className="mb-5 shadow-md shadow-gray-400" />
+			<main className="px-5">
+				<ProductsTable className="mb-5" data={products} />
+				{products.length > 0 && (
+					<Pagination
+						totalPages={productsData?.total_pages || 0}
+						currentPage={currPage}
+						onPageChange={handlePageChange}
+						maxVisiblePages={2}
+					/>
+				)}
+			</main>
+		</>
 	);
 };

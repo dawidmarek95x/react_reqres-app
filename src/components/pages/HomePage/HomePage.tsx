@@ -77,8 +77,6 @@ export const HomePage = () => {
 		setSearchParams(searchParams);
 	};
 
-	console.log(products);
-
 	return (
 		<>
 			<Header className="mb-5" />

@@ -1,8 +1,8 @@
 import { TableHTMLAttributes } from "react";
 import { Product } from "../../../redux/services/productsService";
-import { ProductsTableBody } from "../../molecules/ProductsTableBody/ProductsTableBody";
 import { ProductsTableHead } from "../../molecules/ProductsTableHead/ProductsTableHead";
 import clsx from "clsx";
+import { ProductsTableBody } from "../../molecules/ProductTableBody/ProductTableBody";
 
 type ProductsTableProps = TableHTMLAttributes<HTMLTableElement> & {
 	data?: Product[];

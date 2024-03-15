@@ -7,9 +7,9 @@ import { ReduxProvider } from "./redux/ReduxProvider.tsx";
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 
 root.render(
-  <React.StrictMode>
-    <ReduxProvider>
-      <App />
-    </ReduxProvider>
-  </React.StrictMode>
+	<React.StrictMode>
+		<ReduxProvider>
+			<App />
+		</ReduxProvider>
+	</React.StrictMode>,
 );

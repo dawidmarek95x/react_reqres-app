@@ -66,7 +66,7 @@ export const HomePage = () => {
 						totalPages={productsData?.total_pages || 0}
 						currentPage={currPage}
 						onPageChange={handlePageChange}
-						maxVisiblePages={2}
+						maxVisiblePages={0}
 					/>
 				)}
 			</main>

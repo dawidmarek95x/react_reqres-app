@@ -65,7 +65,7 @@ export const Pagination: React.FC<PaginationProps> = ({
 			);
 		}
 
-		if (endPage < totalPages) {
+		if (endPage < totalPages && startPage < totalPages) {
 			paginationItems.push(
 				<li
 					key="next"

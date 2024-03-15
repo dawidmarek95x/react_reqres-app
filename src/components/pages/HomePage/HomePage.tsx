@@ -25,11 +25,6 @@ const INITIAL_SEARCH_PARAMS: InitialSearchParams = {
 
 export const HomePage = () => {
 	const [searchParams, setSearchParams] = useSearchParams();
-	const currPage =
-		Number(searchParams.get("page")) || INITIAL_SEARCH_PARAMS.page;
-	const perPage =
-		Number(searchParams.get("per_page")) || INITIAL_SEARCH_PARAMS.per_page;
-	const searchedId = Number(searchParams.get("productId")) || undefined;
 
 	useEffect(() => {
 		if (searchParams.get("page")) {
@@ -42,6 +37,12 @@ export const HomePage = () => {
 
 		setSearchParams(searchParams);
 	}, [searchParams]);
+
+	const currPage =
+		Number(searchParams.get("page")) || INITIAL_SEARCH_PARAMS.page;
+	const perPage =
+		Number(searchParams.get("per_page")) || INITIAL_SEARCH_PARAMS.per_page;
+	const searchedId = Number(searchParams.get("productId")) || undefined;
 
 	const [products, setProducts] = useState<FetchedProducts>({
 		data: [],

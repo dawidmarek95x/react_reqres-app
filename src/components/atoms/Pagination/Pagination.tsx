@@ -6,14 +6,14 @@ interface PaginationProps {
 	totalPages: number;
 	currentPage: number;
 	onPageChange: (page: number) => void;
-	maxVisiblePages: number;
+	maxVisibleNumberPages: number;
 }
 
 export const Pagination: React.FC<PaginationProps> = ({
 	totalPages,
 	currentPage,
 	onPageChange,
-	maxVisiblePages,
+	maxVisibleNumberPages,
 }) => {
 	const handlePageChange = (page: number) => {
 		if (page !== currentPage) {
@@ -25,15 +25,15 @@ export const Pagination: React.FC<PaginationProps> = ({
 		const paginationItems = [];
 
 		let startPage = 1;
-		let endPage = Math.min(maxVisiblePages, totalPages);
+		let endPage = Math.min(maxVisibleNumberPages, totalPages);
 
-		if (currentPage > Math.floor(maxVisiblePages / 2)) {
-			startPage = currentPage - Math.floor(maxVisiblePages / 2);
-			endPage = startPage + maxVisiblePages - 1;
+		if (currentPage > Math.floor(maxVisibleNumberPages / 2)) {
+			startPage = currentPage - Math.floor(maxVisibleNumberPages / 2);
+			endPage = startPage + maxVisibleNumberPages - 1;
 
 			if (endPage > totalPages) {
 				endPage = totalPages;
-				startPage = endPage - maxVisiblePages + 1;
+				startPage = endPage - maxVisibleNumberPages + 1;
 			}
 		}
 
@@ -41,7 +41,7 @@ export const Pagination: React.FC<PaginationProps> = ({
 			paginationItems.push(
 				<li
 					key="previous"
-					className="cursor-pointer rounded-md border bg-white px-3 py-1 text-black transition-all duration-200 hover:bg-cyan-300"
+					className="cursor-pointer rounded-md border border-gray-400 bg-white px-3 py-1 text-black transition-all duration-200 hover:border-cyan-300 hover:bg-cyan-300"
 					onClick={() => handlePageChange(currentPage - 1)}
 				>
 					<LeftArrowIcon size={24} className="stroke-black" />
@@ -55,9 +55,9 @@ export const Pagination: React.FC<PaginationProps> = ({
 					key={i}
 					className={`${
 						i === currentPage
-							? "bg-cyan-300"
-							: "bg-white  transition-all duration-200 hover:bg-cyan-300"
-					} cursor-pointer rounded-md border px-3 py-1 text-black`}
+							? "border-cyan-300 bg-cyan-300"
+							: "border-gray-400 bg-white  transition-all duration-200 hover:border-cyan-300 hover:bg-cyan-300"
+					} cursor-pointer rounded-md border  px-3 py-1 text-black `}
 					onClick={() => handlePageChange(i)}
 				>
 					{i}
@@ -69,7 +69,7 @@ export const Pagination: React.FC<PaginationProps> = ({
 			paginationItems.push(
 				<li
 					key="next"
-					className="cursor-pointer rounded-md border bg-white px-3 py-1 text-black transition-all duration-200 hover:bg-cyan-300"
+					className="cursor-pointer rounded-md border border-gray-400 bg-white px-3 py-1 text-black transition-all duration-200 hover:border-cyan-300 hover:bg-cyan-300"
 					onClick={() => handlePageChange(currentPage + 1)}
 				>
 					<RightArrowIcon size={24} className="stroke-black" />

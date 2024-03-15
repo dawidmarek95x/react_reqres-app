@@ -9,6 +9,7 @@ export const store = configureStore({
 	},
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware().concat(reqresApiSlice.middleware),
+	devTools: false,
 });
 
 export type RootState = ReturnType<typeof store.getState>;
